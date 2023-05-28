@@ -1,5 +1,11 @@
 class Solution {
     public int[] solution(int[] arr) {
+        
+        if (arr.length == 1) {
+            int[] answer = {-1};
+            return answer;
+        }
+        
         int minIdx = -1;
         int min = Integer.MAX_VALUE;
         
@@ -8,11 +14,6 @@ class Solution {
                 min = arr[i];
                 minIdx = i;
             }
-        }
-        
-        if (arr.length == 1) {
-            int[] answer = {-1};
-            return answer;
         }
         
         int[] answer = new int[arr.length - 1];
