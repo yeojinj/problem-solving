@@ -3,6 +3,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * N이 1일 때를 주의해야 함 (2번째 테케가 N=1인 것 같음)
+ * 입력이
+ * 1
+ * 2 3
+ * 이런 식으로 두 번째 줄에도 숫자가 두 개만 입력됨...
+ */
 public class Main {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
