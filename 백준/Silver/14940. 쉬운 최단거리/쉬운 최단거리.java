@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 class Point {
     int x;
     int y;
-    int dist;   // 이거 넣으면 메모리 초과함
+    // int dist;   // 이거 넣으면 메모리 초과함
 
     public Point(int x, int y) {
         this.x = x;
