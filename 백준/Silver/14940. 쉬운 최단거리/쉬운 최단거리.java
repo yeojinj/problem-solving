@@ -5,17 +5,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class Point {
-    int x;
-    int y;
-    // int dist;   // 이거 넣으면 메모리 초과함
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
 public class Main {
 
     static int N, M;
@@ -26,6 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
         N = Integer.parseInt(st.nextToken());   // 세로
         M = Integer.parseInt(st.nextToken());   // 가로
 
@@ -52,24 +42,26 @@ public class Main {
         // 출력
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                System.out.print(dist[i][j] + " ");
+                sb.append(dist[i][j] + " ");
             }
-            System.out.println();
+            sb.append("\n");
         }
+
+        System.out.println(sb);
     }
 
     static void bfs(int x, int y) {
-        Queue<Point> q = new LinkedList<>();
-        q.offer(new Point(x, y));        // 목표지점에서 출발해서 역추적
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[] {x, y, 0});        // 목표지점에서 출발해서 역추적
         dist[x][y] = 0;
         while (!q.isEmpty()) {
-            Point p = q.poll();
+            int point[] = q.poll();
             for (int d = 0; d < 4; d++) {       // 사방탐색
-                int nx = p.x + dx[d];
-                int ny = p.y + dy[d];
+                int nx = point[0] + dx[d];
+                int ny = point[1] + dy[d];
                 if (isIn(nx, ny) && dist[nx][ny] == -1) {       // 범위 + visited + 갈 수 있는 땅 체크
-                    q.offer(new Point(nx, ny));
-                    dist[nx][ny] = dist[p.x][p.y] + 1;
+                    q.add(new int[] {nx, ny, point[2] + 1});
+                    dist[nx][ny] = point[2] + 1;
                 }
             }
         }
